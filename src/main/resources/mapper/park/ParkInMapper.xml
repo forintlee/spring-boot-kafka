@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieshun.jsis.message.mapper.park.ParkInMapper">
+  <resultMap id="BaseResultMap" type="com.jieshun.jsis.message.entity.park.ParkIn">
+    <id column="IN_TIME" jdbcType="TIMESTAMP" property="inTime" />
+    <id column="ID" jdbcType="CHAR" property="id" />
+    <result column="CARD_ID" jdbcType="CHAR" property="cardId" />
+    <result column="CARD_TYPE" jdbcType="CHAR" property="cardType" />
+    <result column="IN_OPERATOR" jdbcType="VARCHAR" property="inOperator" />
+    <result column="IN_CAR_PHOTO" jdbcType="VARCHAR" property="inCarPhoto" />
+    <result column="IN_PERSON_PHOTO" jdbcType="VARCHAR" property="inPersonPhoto" />
+    <result column="CAR_NUMBER" jdbcType="VARCHAR" property="carNumber" />
+    <result column="IS_OUT" jdbcType="SMALLINT" property="isOut" />
+    <result column="EQUIP_ID" jdbcType="CHAR" property="equipId" />
+    <result column="SUBSYSTEM_ID" jdbcType="CHAR" property="subsystemId" />
+    <result column="CONTROLUNITID" jdbcType="CHAR" property="controlunitid" />
+    <result column="CHARGE_TIME" jdbcType="TIMESTAMP" property="chargeTime" />
+    <result column="CHARGE_MONEY" jdbcType="DECIMAL" property="chargeMoney" />
+    <result column="EVENT_TYPE" jdbcType="VARCHAR" property="eventType" />
+    <result column="PARK_ID" jdbcType="CHAR" property="parkId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="IN_EQUIP_NAME" jdbcType="VARCHAR" property="inEquipName" />
+    <result column="TRANSFER_FLAG" jdbcType="INTEGER" property="transferFlag" />
+    <result column="IDNO" jdbcType="VARCHAR" property="idno" />
+    <result column="SYNC_FLAG" jdbcType="INTEGER" property="syncFlag" />
+    <result column="SEND_TIME" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="in_time_int" jdbcType="BIGINT" property="inTimeInt" />
+    <result column="control_two" jdbcType="VARCHAR" property="controlTwo" />
+    <result column="control_three" jdbcType="VARCHAR" property="controlThree" />
+    <result column="control_four" jdbcType="VARCHAR" property="controlFour" />
+    <result column="control_five" jdbcType="VARCHAR" property="controlFive" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    IN_TIME, ID, CARD_ID, CARD_TYPE, IN_OPERATOR, IN_CAR_PHOTO, IN_PERSON_PHOTO, CAR_NUMBER, 
+    IS_OUT, EQUIP_ID, SUBSYSTEM_ID, CONTROLUNITID, CHARGE_TIME, CHARGE_MONEY, EVENT_TYPE, 
+    PARK_ID, CREATE_TIME, IN_EQUIP_NAME, TRANSFER_FLAG, IDNO, SYNC_FLAG, SEND_TIME, in_time_int, 
+    control_two, control_three, control_four, control_five
+  </sql>
+	<insert id="insertBatch">
+		<foreach collection="list" index="index" item="item"
+			separator=";">
+			insert into np_dt_park_in_rt (IN_TIME, ID, CARD_ID,
+			CARD_TYPE, IN_OPERATOR, IN_CAR_PHOTO,
+			IN_PERSON_PHOTO, CAR_NUMBER, IS_OUT,
+			EQUIP_ID, SUBSYSTEM_ID, CONTROLUNITID,
+			CHARGE_TIME, CHARGE_MONEY, EVENT_TYPE,
+			PARK_ID, CREATE_TIME, IN_EQUIP_NAME,
+			TRANSFER_FLAG, IDNO, SYNC_FLAG,
+			SEND_TIME, in_time_int, control_two,
+			control_three, control_four, control_five
+			)
+			values (#{item.inTime,jdbcType=TIMESTAMP}, #{item.id,jdbcType=CHAR},
+			#{item.cardId,jdbcType=CHAR},
+			#{item.cardType,jdbcType=CHAR}, #{item.inOperator,jdbcType=VARCHAR},
+			#{item.inCarPhoto,jdbcType=VARCHAR},
+			#{item.inPersonPhoto,jdbcType=VARCHAR},
+			#{item.carNumber,jdbcType=VARCHAR}, #{item.isOut,jdbcType=SMALLINT},
+			#{item.equipId,jdbcType=CHAR}, #{item.subsystemId,jdbcType=CHAR},
+			#{item.controlunitid,jdbcType=CHAR},
+			#{item.chargeTime,jdbcType=TIMESTAMP},
+			#{item.chargeMoney,jdbcType=DECIMAL},
+			#{item.eventType,jdbcType=VARCHAR},
+			#{item.parkId,jdbcType=CHAR}, #{item.createTime,jdbcType=TIMESTAMP},
+			#{item.inEquipName,jdbcType=VARCHAR},
+			#{item.transferFlag,jdbcType=INTEGER}, #{item.idno,jdbcType=VARCHAR},
+			#{item.syncFlag,jdbcType=INTEGER},
+			#{item.sendTime,jdbcType=TIMESTAMP},
+			#{item.inTimeInt,jdbcType=BIGINT},
+			#{item.controlTwo,jdbcType=VARCHAR},
+			#{item.controlThree,jdbcType=VARCHAR},
+			#{item.controlFour,jdbcType=VARCHAR},
+			#{item.controlFive,jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<update id="updateBatch">
+		<foreach collection="list" item="item" index="index"
+			separator=";">
+			update np_dt_park_in_rt set
+			CARD_ID = #{item.cardId,jdbcType=CHAR},
+			CARD_TYPE = #{item.cardType,jdbcType=CHAR},
+			IN_OPERATOR = #{item.inOperator,jdbcType=VARCHAR},
+			IN_CAR_PHOTO = #{item.inCarPhoto,jdbcType=VARCHAR},
+			IN_PERSON_PHOTO = #{item.inPersonPhoto,jdbcType=VARCHAR},
+			CAR_NUMBER = #{item.carNumber,jdbcType=VARCHAR},
+			IS_OUT = #{item.isOut,jdbcType=SMALLINT},
+			EQUIP_ID = #{item.equipId,jdbcType=CHAR},
+			SUBSYSTEM_ID = #{item.subsystemId,jdbcType=CHAR},
+			CONTROLUNITID = #{item.controlunitid,jdbcType=CHAR},
+			CHARGE_TIME = #{item.chargeTime,jdbcType=TIMESTAMP},
+			CHARGE_MONEY = #{item.chargeMoney,jdbcType=DECIMAL},
+			EVENT_TYPE = #{item.eventType,jdbcType=VARCHAR},
+			PARK_ID = #{item.parkId,jdbcType=CHAR},
+			CREATE_TIME = #{item.createTime,jdbcType=TIMESTAMP},
+			IN_EQUIP_NAME = #{item.inEquipName,jdbcType=VARCHAR},
+			TRANSFER_FLAG = #{item.transferFlag,jdbcType=INTEGER},
+			IDNO = #{item.idno,jdbcType=VARCHAR},
+			SYNC_FLAG = #{item.syncFlag,jdbcType=INTEGER},
+			SEND_TIME = #{item.sendTime,jdbcType=TIMESTAMP},
+			in_time_int = #{item.inTimeInt,jdbcType=BIGINT}
+			where control_two=#{controlUnit} and ID=#{item.id,jdbcType=CHAR}
+		</foreach>
+	</update>
+	<select id="selectByIds" resultType="String">
+		select id from np_dt_park_in_rt where id in
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")"> #{item.id}</foreach>
+		where control_two=#{controlUnit}
+	</select>
+	
+</mapper>

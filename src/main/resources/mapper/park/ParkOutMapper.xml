@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieshun.jsis.message.mapper.park.ParkOutMapper">
+  <resultMap id="BaseResultMap" type="com.jieshun.jsis.message.entity.park.ParkOut">
+    <id column="OUT_TIME" jdbcType="TIMESTAMP" property="outTime" />
+    <id column="ID" jdbcType="CHAR" property="id" />
+    <result column="CARD_ID" jdbcType="CHAR" property="cardId" />
+    <result column="CARD_TYPE" jdbcType="CHAR" property="cardType" />
+    <result column="IN_ID" jdbcType="CHAR" property="inId" />
+    <result column="OUT_MODE" jdbcType="VARCHAR" property="outMode" />
+    <result column="PARKING_TIME" jdbcType="INTEGER" property="parkingTime" />
+    <result column="YS_MONEY" jdbcType="DECIMAL" property="ysMoney" />
+    <result column="SS_MONEY" jdbcType="DECIMAL" property="ssMoney" />
+    <result column="OUT_OPERATOR" jdbcType="VARCHAR" property="outOperator" />
+    <result column="OUT_CAR_PHOTO" jdbcType="VARCHAR" property="outCarPhoto" />
+    <result column="OUT_PERSON_PHOTO" jdbcType="VARCHAR" property="outPersonPhoto" />
+    <result column="CAR_NUMBER" jdbcType="VARCHAR" property="carNumber" />
+    <result column="EQUIP_ID" jdbcType="CHAR" property="equipId" />
+    <result column="SUBSYSTEM_ID" jdbcType="CHAR" property="subsystemId" />
+    <result column="GEN_TRANS" jdbcType="SMALLINT" property="genTrans" />
+    <result column="CONTROLUNITID" jdbcType="CHAR" property="controlunitid" />
+    <result column="EVENT_TYPE" jdbcType="VARCHAR" property="eventType" />
+    <result column="PAY_TYPE_NAME" jdbcType="VARCHAR" property="payTypeName" />
+    <result column="HG_MONEY" jdbcType="DECIMAL" property="hgMoney" />
+    <result column="YH_MONEY" jdbcType="DECIMAL" property="yhMoney" />
+    <result column="PARK_ID" jdbcType="CHAR" property="parkId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="USER_WORK" jdbcType="VARCHAR" property="userWork" />
+    <result column="IN_TIME" jdbcType="TIMESTAMP" property="inTime" />
+    <result column="IN_EQUIP_ID" jdbcType="CHAR" property="inEquipId" />
+    <result column="AUDIT_FLAG" jdbcType="VARCHAR" property="auditFlag" />
+    <result column="AUDITOR_ID" jdbcType="CHAR" property="auditorId" />
+    <result column="AUDIT_TIME" jdbcType="TIMESTAMP" property="auditTime" />
+    <result column="AUDIT_LOG" jdbcType="VARCHAR" property="auditLog" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="FREE_MONEY" jdbcType="DECIMAL" property="freeMoney" />
+    <result column="REPLACE_FLAG" jdbcType="INTEGER" property="replaceFlag" />
+    <result column="APP_USER_ID" jdbcType="VARCHAR" property="appUserId" />
+    <result column="SYNC_FLAG" jdbcType="INTEGER" property="syncFlag" />
+    <result column="SEND_TIME" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="IN_EQUIP_NAME" jdbcType="VARCHAR" property="inEquipName" />
+    <result column="OUT_EQUIP_NAME" jdbcType="VARCHAR" property="outEquipName" />
+    <result column="TRANSFER_FLAG" jdbcType="INTEGER" property="transferFlag" />
+    <result column="IDNO" jdbcType="VARCHAR" property="idno" />
+    <result column="out_time_int" jdbcType="BIGINT" property="outTimeInt" />
+    <result column="control_two" jdbcType="VARCHAR" property="controlTwo" />
+    <result column="control_three" jdbcType="VARCHAR" property="controlThree" />
+    <result column="control_four" jdbcType="VARCHAR" property="controlFour" />
+    <result column="control_five" jdbcType="VARCHAR" property="controlFive" />
+  </resultMap>
+	<sql id="Base_Column_List">
+		OUT_TIME, ID, CARD_ID, CARD_TYPE, IN_ID, OUT_MODE, PARKING_TIME, YS_MONEY,
+		SS_MONEY,
+		OUT_OPERATOR, OUT_CAR_PHOTO, OUT_PERSON_PHOTO, CAR_NUMBER, EQUIP_ID, SUBSYSTEM_ID,
+		GEN_TRANS, CONTROLUNITID, EVENT_TYPE, PAY_TYPE_NAME, HG_MONEY,
+		YH_MONEY, PARK_ID,
+		CREATE_TIME, USER_WORK, IN_TIME, IN_EQUIP_ID, AUDIT_FLAG, AUDITOR_ID, AUDIT_TIME,
+		AUDIT_LOG, REMARK, FREE_MONEY, REPLACE_FLAG, APP_USER_ID, SYNC_FLAG,
+		SEND_TIME, IN_EQUIP_NAME,
+		OUT_EQUIP_NAME, TRANSFER_FLAG, IDNO, out_time_int, control_two, control_three,
+		control_four,
+		control_five
+	</sql>
+	<insert id="insertBatch">
+	<foreach collection="list" index="index" item="item"
+		separator=";">
+			insert into np_dt_park_out_rt (
+	OUT_TIME, ID, CARD_ID, CARD_TYPE, IN_ID, OUT_MODE, PARKING_TIME, YS_MONEY,
+	SS_MONEY,
+	OUT_OPERATOR, OUT_CAR_PHOTO, OUT_PERSON_PHOTO, CAR_NUMBER, EQUIP_ID, SUBSYSTEM_ID,
+	GEN_TRANS, CONTROLUNITID, EVENT_TYPE, PAY_TYPE_NAME, HG_MONEY,
+	YH_MONEY, PARK_ID,
+	CREATE_TIME, USER_WORK, IN_TIME, IN_EQUIP_ID, AUDIT_FLAG, AUDITOR_ID, AUDIT_TIME,
+	AUDIT_LOG, REMARK, FREE_MONEY, REPLACE_FLAG, APP_USER_ID, SYNC_FLAG,
+	SEND_TIME, IN_EQUIP_NAME,
+	OUT_EQUIP_NAME, TRANSFER_FLAG, IDNO, out_time_int, control_two, control_three,
+	control_four,
+	control_five
+	)
+	values
+		(
+		#{item.outTime},
+		#{item.id},
+		#{item.cardId},
+		#{item.cardType},
+		#{item.inId},
+		#{item.outMode},
+		#{item.parkingTime},
+		#{item.ysMoney},
+		#{item.ssMoney},
+		#{item.outOperator},
+		#{item.outCarPhoto},
+		#{item.outPersonPhoto},
+		#{item.carNumber},
+		#{item.equipId},
+		#{item.subsystemId},
+		#{item.genTrans},
+		#{item.controlunitid},
+		#{item.eventType},
+		#{item.payTypeName},
+		#{item.hgMoney},
+		#{item.yhMoney},
+		#{item.parkId},
+		#{item.createTime},
+		#{item.userWork},
+		#{item.inTime},
+		#{item.inEquipId},
+		#{item.auditFlag},
+		#{item.auditorId},
+		#{item.auditTime},
+		#{item.auditLog},
+		#{item.remark},
+		#{item.freeMoney},
+		#{item.replaceFlag},
+		#{item.appUserId},
+		#{item.syncFlag},
+		#{item.sendTime},
+		#{item.inEquipName},
+		#{item.outEquipName},
+		#{item.transferFlag},
+		#{item.idno},
+		#{item.outTimeInt},
+		#{item.controlTwo},
+		#{item.controlThree},
+		#{item.controlFour},
+		#{item.controlFive})
+	</foreach>
+	</insert>
+	<update id="updateBatch">
+		<foreach collection="list" item="item" index="index"
+			separator=";" open="" close="">
+			update np_dt_park_out_rt
+			set CARD_ID = #{item.cardId,jdbcType=CHAR},
+			CARD_TYPE = #{item.cardType,jdbcType=CHAR},
+			IN_ID = #{item.inId,jdbcType=CHAR},
+			OUT_MODE = #{item.outMode,jdbcType=VARCHAR},
+			PARKING_TIME = #{item.parkingTime,jdbcType=INTEGER},
+			YS_MONEY = #{item.ysMoney,jdbcType=DECIMAL},
+			SS_MONEY = #{item.ssMoney,jdbcType=DECIMAL},
+			OUT_OPERATOR = #{item.outOperator,jdbcType=VARCHAR},
+			OUT_CAR_PHOTO = #{item.outCarPhoto,jdbcType=VARCHAR},
+			OUT_PERSON_PHOTO = #{item.outPersonPhoto,jdbcType=VARCHAR},
+			CAR_NUMBER = #{item.carNumber,jdbcType=VARCHAR},
+			EQUIP_ID = #{item.equipId,jdbcType=CHAR},
+			SUBSYSTEM_ID = #{item.subsystemId,jdbcType=CHAR},
+			GEN_TRANS = #{item.genTrans,jdbcType=SMALLINT},
+			CONTROLUNITID = #{item.controlunitid,jdbcType=CHAR},
+			EVENT_TYPE = #{item.eventType,jdbcType=VARCHAR},
+			PAY_TYPE_NAME = #{item.payTypeName,jdbcType=VARCHAR},
+			HG_MONEY = #{item.hgMoney,jdbcType=DECIMAL},
+			YH_MONEY = #{item.yhMoney,jdbcType=DECIMAL},
+			PARK_ID = #{item.parkId,jdbcType=CHAR},
+			CREATE_TIME = #{item.createTime,jdbcType=TIMESTAMP},
+			USER_WORK = #{item.userWork,jdbcType=VARCHAR},
+			IN_TIME = #{item.inTime,jdbcType=TIMESTAMP},
+			IN_EQUIP_ID = #{item.inEquipId,jdbcType=CHAR},
+			AUDIT_FLAG = #{item.auditFlag,jdbcType=VARCHAR},
+			AUDITOR_ID = #{item.auditorId,jdbcType=CHAR},
+			AUDIT_TIME = #{item.auditTime,jdbcType=TIMESTAMP},
+			AUDIT_LOG = #{item.auditLog,jdbcType=VARCHAR},
+			REMARK = #{item.remark,jdbcType=VARCHAR},
+			FREE_MONEY = #{item.freeMoney,jdbcType=DECIMAL},
+			REPLACE_FLAG = #{item.replaceFlag,jdbcType=INTEGER},
+			APP_USER_ID = #{item.appUserId,jdbcType=VARCHAR},
+			SYNC_FLAG = #{item.syncFlag,jdbcType=INTEGER},
+			SEND_TIME = #{item.sendTime,jdbcType=TIMESTAMP},
+			IN_EQUIP_NAME = #{item.inEquipName,jdbcType=VARCHAR},
+			OUT_EQUIP_NAME = #{item.outEquipName,jdbcType=VARCHAR},
+			TRANSFER_FLAG = #{item.transferFlag,jdbcType=INTEGER},
+			IDNO = #{item.idno,jdbcType=VARCHAR},
+			out_time_int = #{item.outTimeInt,jdbcType=BIGINT}
+			where control_two=#{controlUnit}  and ID=#{item.id,jdbcType=CHAR}
+		</foreach>
+	</update>
+	<select id="selectByIds" resultType="String" >
+		select id from np_dt_park_out_rt where id in
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+			#{item.id}
+		</foreach>
+		where control_two=#{controlUnit}
+	</select>
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="jsis">
+	<!-- 注释 -->
+	<commentGenerator>
+		<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+		<property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳 -->
+	</commentGenerator>  
+      
+    <jdbcConnection connectionURL="jdbc:mysql://10.10.203.106:8066/dev_db" driverClass="com.mysql.jdbc.Driver" password="dev_mycat" userId="dev_mycat" />
+   	<!--生成Model实体类存放位置-->
+    <javaModelGenerator targetPackage="com.jieshun.jsis.message.entity" targetProject="jsis-kafka/src/main/java" />
+    <!--生成映射文件xml存放位置-->
+    <sqlMapGenerator targetPackage="mapper" targetProject="jsis-kafka/src/main/resources">
+    	<property name="enableSubPackages" value="true"/>
+    </sqlMapGenerator>
+     <!--生成Dao接口类存放位置-->
+<!--     <javaClientGenerator targetPackage="com.jieshun.jsis.message.mapper" targetProject="jsis-kafka/src/main/java" type="XMLMAPPER">
+    	 <property name="enableSubPackages" value="true"/>
+    </javaClientGenerator> -->
+     <!--生成对应表及类名-->
+<!-- 	<table tableName="np_dt_park_in" domainObjectName="park.ParkIn"	enableCountByExample="false" enableDeleteByExample="false"	enableSelectByExample="false" enableUpdateByExample="false"></table>
+	<table tableName="np_dt_park_out" domainObjectName="park.ParkOut" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"></table> -->
+	<table tableName="np_dt_door_inout_2017" domainObjectName="park.DoorInOut" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"></table>
+  </context>
+</generatorConfiguration>

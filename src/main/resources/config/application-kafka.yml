@@ -1,0 +1,38 @@
+kafka:
+  consumer:
+    bootstrap:
+      servers: 119.23.42.209:9092
+    enable:
+      auto:
+        commit: false
+    auto:
+      commit:
+        interval:
+          ms: 100
+      offset: 
+        reset: latest
+    session:
+      timeout:
+        ms: 10000
+    heartbeat:
+      interval:
+        ms: 2000
+    max: 
+      poll: 
+        records: 1000
+    group:
+      id: jsis-group
+    topic:
+      door: mb.door.inout1
+      park:
+        out: mb.park.out1
+        in: mb.park.in1
+  producer: 
+    bootstrap: 
+      servers: 119.23.42.209:9092
+    retries: 0
+    batch: 
+      size: 4096
+    linger: 1
+    buffer:
+      memory: 40960

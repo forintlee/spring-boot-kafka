@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieshun.jsis.message.mapper.park.DoorInOutMapper">
+  <resultMap id="BaseResultMap" type="com.jieshun.jsis.message.entity.park.DoorInOut">
+    <id column="OPEN_TIME" jdbcType="TIMESTAMP" property="openTime" />
+    <id column="ID" jdbcType="CHAR" property="id" />
+    <result column="CARD_ID" jdbcType="CHAR" property="cardId" />
+    <result column="CARD_TYPE" jdbcType="CHAR" property="cardType" />
+    <result column="OPEN_MODE" jdbcType="VARCHAR" property="openMode" />
+    <result column="OPEN_OPERATOR" jdbcType="VARCHAR" property="openOperator" />
+    <result column="EQUIP_ID" jdbcType="CHAR" property="equipId" />
+    <result column="SUBSYSTEM_ID" jdbcType="CHAR" property="subsystemId" />
+    <result column="INOUT_PHOTO" jdbcType="VARCHAR" property="inoutPhoto" />
+    <result column="CONTROLUNITID" jdbcType="CHAR" property="controlunitid" />
+    <result column="inout_time_int" jdbcType="BIGINT" property="inoutTimeInt" />
+    <result column="control_two" jdbcType="VARCHAR" property="controlTwo" />
+    <result column="control_three" jdbcType="VARCHAR" property="controlThree" />
+    <result column="control_four" jdbcType="VARCHAR" property="controlFour" />
+    <result column="control_five" jdbcType="VARCHAR" property="controlFive" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    OPEN_TIME, ID, CARD_ID, CARD_TYPE, OPEN_MODE, OPEN_OPERATOR, EQUIP_ID, SUBSYSTEM_ID, 
+    INOUT_PHOTO, CONTROLUNITID, inout_time_int, control_two, control_three, control_four, 
+    control_five
+  </sql>
+	<insert id="insertBatch">
+		<foreach collection="list" index="index" item="item"
+			separator=";">
+			insert into np_dt_door_inout_rt (OPEN_TIME, ID, CARD_ID,
+			CARD_TYPE, OPEN_MODE, OPEN_OPERATOR,
+			EQUIP_ID, SUBSYSTEM_ID, INOUT_PHOTO,
+			CONTROLUNITID, inout_time_int, control_two,
+			control_three, control_four, control_five
+			)
+			values (#{item.openTime,jdbcType=TIMESTAMP}, #{item.id,jdbcType=CHAR},
+			#{item.cardId,jdbcType=CHAR},
+			#{item.cardType,jdbcType=CHAR}, #{item.openMode,jdbcType=VARCHAR},
+			#{item.openOperator,jdbcType=VARCHAR},
+			#{item.equipId,jdbcType=CHAR}, #{item.subsystemId,jdbcType=CHAR},
+			#{item.inoutPhoto,jdbcType=VARCHAR},
+			#{item.controlunitid,jdbcType=CHAR},
+			#{item.inoutTimeInt,jdbcType=BIGINT},
+			#{item.controlTwo,jdbcType=VARCHAR},
+			#{item.controlThree,jdbcType=VARCHAR},
+			#{item.controlFour,jdbcType=VARCHAR},
+			#{item.controlFive,jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+	<select id="selectByIds" resultType="String">
+		select id from np_dt_door_inout_rt where id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item.id}
+		</foreach>
+		where control_two=#{controlUnit}
+	</select>
+</mapper>

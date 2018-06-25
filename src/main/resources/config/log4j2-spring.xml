@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<Properties>
+		<Property name="filepath">logs</Property>
+	</Properties>
+	<appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n" />
+		</Console>
+		<RollingFile name="RollingFile" fileName="${filepath}/jsis-msg.log"	filePattern="${filepath}/jsis-msg-%d{yyyy-MM-dd}-%i.log.gz">
+			<ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout 	pattern="%-d{yyyy-MM-dd HH:mm:ss} [%thread] %m%n" />
+			<SizeBasedTriggeringPolicy size="500MB" />
+		</RollingFile>
+	</appenders>
+	<loggers>
+		<root level="DEBUG">
+			<appender-ref ref="RollingFile" />
+			<appender-ref ref="Console" />
+		</root>
+		<logger name="org.apache.kafka" additivity="false">
+			 <level value = "INFO" />
+		</logger>
+		<logger name="org.springframework.kafka" additivity="false">
+			 <level value = "INFO" />
+		</logger>
+	</loggers>
+</configuration>  
